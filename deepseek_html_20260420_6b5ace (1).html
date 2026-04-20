@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>OvaCare | Edukasi & Cek Risiko Kanker Ovarium</title>
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fef9f5;
+            color: #2c2b2b;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        :root {
+            --primary: #d95b6c;
+            --primary-dark: #bc4a5a;
+            --primary-soft: #fbe9ec;
+            --secondary: #5d8f7f;
+            --accent-cream: #fff4ef;
+            --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
+            --radius-card: 2rem;
+            --radius-btn: 3rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.7rem;
+            font-weight: 700;
+            letter-spacing: -0.3px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #d95b6c 0%, #b64455 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #4a4a4a;
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-outline {
+            border: 1.5px solid var(--primary);
+            background: transparent;
+            padding: 0.5rem 1.2rem;
+            border-radius: var(--radius-btn);
+            font-weight: 600;
+            color: var(--primary);
+            transition: 0.2s;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            padding: 2rem 0 4rem;
+        }
+
+        .hero-content {
+            flex: 1.2;
+        }
+
+        .hero-badge {
+            background: var(--primary-soft);
+            color: var(--primary-dark);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #2c2b2b 0%, #5d3a3f 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .hero-content p {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            max-width: 550px;
+            margin: 1rem 0 1.8rem;
+        }
+
+        .stat-highlight {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 0.8rem 1.5rem;
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            border: none;
+            padding: 0.9rem 2rem;
+            border-radius: var(--radius-btn);
+            font-weight: 600;
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 6px 14px rgba(217, 91, 108, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            border: 1px solid #ddd;
+            padding: 0.9rem 2rem;
+            border-radius: var(--radius-btn);
+            font-weight: 500;
+            color: #2c2b2b;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: #f5ece8;
+            border-color: var(--primary);
+        }
+
+        .hero-image {
+            flex: 0.9;
+            background: linear-gradient(145deg, #fce4df, #fff1ea);
+            border-radius: 3rem;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .hero-image i {
+            font-size: 12rem;
+            color: var(--primary);
+            opacity: 0.8;
+        }
+
+        .stats-grid {
+            display: flex;
+            justify-content: space-between;
+            background: white;
+            border-radius: 2rem;
+            padding: 2rem 2rem;
+            margin: 2rem 0 3rem;
+            box-shadow: var(--shadow-sm);
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        .stats-item {
+            text-align: center;
+            flex: 1;
+        }
+
+        .stats-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: var(--radius-card);
+            padding: 2rem 1.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s ease;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid rgba(217, 91, 108, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--primary-soft);
+        }
+
+        .card-icon {
+            background: var(--primary-soft);
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 2rem;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--primary);
+        }
+
+        .research-section {
+            background: var(--accent-cream);
+            border-radius: 2.5rem;
+            padding: 2.5rem;
+            margin: 3rem 0;
+        }
+
+        .research-stats {
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+        }
+
+        .research-item {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1rem 1.8rem;
+            flex: 1;
+            font-weight: 500;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            visibility: hidden;
+            opacity: 0;
+            transition: 0.2s;
+        }
+
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .modal-container {
+            background: white;
+            width: 90%;
+            max-width: 750px;
+            border-radius: 2rem;
+            padding: 2rem;
+            box-shadow: 0 30px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            max-height: 85vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #f0e2db;
+            padding-bottom: 0.75rem;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #999;
+            transition: 0.2s;
+        }
+
+        .close-modal:hover {
+            color: var(--primary);
+        }
+
+        .quiz-question {
+            margin-bottom: 1.8rem;
+        }
+
+        .quiz-question p {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .quiz-options label {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: #faf3f0;
+            padding: 0.8rem 1.2rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: 0.1s;
+            font-weight: 500;
+        }
+
+        .quiz-options label:hover {
+            background: #f3e4de;
+        }
+
+        input[type="radio"] {
+            accent-color: var(--primary);
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .result-score {
+            text-align: center;
+            background: #eef6f2;
+            padding: 1.5rem;
+            border-radius: 1.5rem;
+            margin: 1rem 0;
+            font-size: 1.2rem;
+        }
+
+        .risk-form-group {
+            margin-bottom: 1.4rem;
+            border-bottom: 1px solid #f0e2db;
+            padding-bottom: 0.8rem;
+        }
+
+        .risk-form-group label {
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.6rem;
+            color: #2c2b2b;
+        }
+
+        select, .radio-group {
+            width: 100%;
+            padding: 0.6rem;
+            border-radius: 1.5rem;
+            border: 1px solid #e2cfc8;
+            background: white;
+            font-family: inherit;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            border: none;
+            padding: 0;
+        }
+
+        .radio-group label {
+            font-weight: normal;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+        }
+
+        /* Custom table & symptom grid */
+        .symptom-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        .symptom-card {
+            background: #fef5f0;
+            border-radius: 1.2rem;
+            padding: 1rem;
+            text-align: center;
+        }
+        .symptom-card i {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .stage-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 1rem;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        .stage-table th, .stage-table td {
+            padding: 0.75rem;
+            text-align: center;
+            border-bottom: 1px solid #f0e2db;
+        }
+        .stage-table th {
+            background: var(--primary-soft);
+            color: #bc4a5a;
+        }
+        .badge-survival {
+            background: #d95b6c20;
+            border-radius: 2rem;
+            padding: 0.2rem 0.6rem;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #7f6b64;
+            font-size: 0.8rem;
+            border-top: 1px solid #f0e2db;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.3rem;
+            }
+            .container {
+                padding: 0 1.2rem;
+            }
+            .stats-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+            .modal-container {
+                padding: 1.5rem;
+            }
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .toast-msg {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c2b2b;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            z-index: 1100;
+            opacity: 0;
+            transition: 0.2s;
+            pointer-events: none;
+            font-weight: 500;
+        }
+
+        .quiz-nav-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.8rem;
+            gap: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-ribbon"></i>
+                <span>OvaCare</span>
+            </div>
+            <div class="nav-links">
+                <a id="navKenali">Kenali Kanker</a>
+                <a id="navRisk">Cek Risiko</a>
+                <a id="navQuiz">Uji Pengetahuan</a>
+                <button class="btn-outline" id="emergencyBtn"><i class="fas fa-heartbeat"></i> Info Cepat</button>
+            </div>
+        </nav>
+
+        <div class="hero">
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-shield-alt"></i> Edukasi Kesehatan Reproduksi</div>
+                <h1>Kenali Kanker Ovarium, <br>Jaga Hidupmu</h1>
+                <p>Kanker ovarium adalah <strong>"silent killer"</strong> — tidak bergejala hingga stadium lanjut. Pengetahuan adalah perlindungan terbaikmu.</p>
+                <div class="stat-highlight">
+                    <div class="stat-card"><span class="stat-number">15.130+</span><br>Kasus baru/thn (RI)</div>
+                    <div class="stat-card"><span class="stat-number">#3</span><br>Kanker terbanyak</div>
+                    <div class="stat-card"><span class="stat-number">70%</span><br>Didiagnosis stadium lanjut</div>
+                </div>
+                <div class="hero-actions">
+                    <button class="btn-primary" id="heroKenaliBtn"><i class="fas fa-book-open"></i> Kenali Kanker</button>
+                    <button class="btn-secondary" id="heroRiskBtn"><i class="fas fa-clipboard-list"></i> Cek Risikomu</button>
+                    <button class="btn-secondary" id="heroQuizBtn"><i class="fas fa-brain"></i> Uji Pengetahuan</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <i class="fas fa-female"></i>
+                <i class="fas fa-heart" style="font-size: 3rem; margin-top: -1rem; display: block; color:#d95b6c;"></i>
+            </div>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stats-item"><div class="stats-number">15.130</div><div>Kasus Baru per Tahun (Indonesia)</div></div>
+            <div class="stats-item"><div class="stats-number">#3</div><div>Kanker Terbanyak pada Perempuan</div></div>
+            <div class="stats-item"><div class="stats-number">70%</div><div>Terdiagnosis Stadium Lanjut</div></div>
+        </div>
+
+        <div class="card-grid">
+            <div class="feature-card" data-feature="kenali">
+                <div class="card-icon"><i class="fas fa-stethoscope"></i></div>
+                <h3>Kenali Kanker</h3>
+                <p>Gejala, risiko & stadium secara lengkap. Deteksi dini menyelamatkan nyawa.</p>
+                <button class="btn-primary" style="margin-top: 1rem; padding:0.5rem 1.2rem; font-size:0.9rem;">Pelajari →</button>
+            </div>
+            <div class="feature-card" data-feature="cekrisiko">
+                <div class="card-icon"><i class="fas fa-chart-line"></i></div>
+                <h3>Cek Risikomu</h3>
+                <p>Asesmen mandiri 8 pertanyaan. Ketahui tingkat risikomu.</p>
+                <button class="btn-primary" style="margin-top: 1rem; padding:0.5rem 1.2rem;">Mulai Asesmen →</button>
+            </div>
+            <div class="feature-card" data-feature="quiz">
+                <div class="card-icon"><i class="fas fa-puzzle-piece"></i></div>
+                <h3>Uji Pengetahuan</h3>
+                <p>8 soal interaktif. Dapatkan skormu dan evaluasi pemahamanmu!</p>
+                <button class="btn-primary" style="margin-top: 1rem; padding:0.5rem 1.2rem;">Ikuti Kuis →</button>
+            </div>
+        </div>
+
+        <div class="research-section">
+            <h2 style="font-size:1.8rem; font-weight:700;">Mengapa penting? <i class="fas fa-chart-simple"></i></h2>
+            <p style="margin-top:0.8rem; font-size:1.1rem"><strong>Pengetahuan = Deteksi Dini = Hidup</strong></p>
+            <p>Penelitian di RSUD Dr. Achmad Mochtar Bukittinggi (Andriani & Maulidina, 2025) membuktikan bahwa pendidikan kesehatan tentang faktor risiko kanker ovarium secara signifikan meningkatkan pengetahuan perempuan — dari rerata 10,14 menjadi 13,28 — dan memperbaiki sikap pencegahan (p=0,000).</p>
+            <div class="research-stats">
+                <div class="research-item"><i class="fas fa-arrow-up"></i> Skor pengetahuan +31%</div>
+                <div class="research-item"><i class="fas fa-chart-line"></i> p=0,000 (signifikan)</div>
+                <div class="research-item"><i class="fas fa-exclamation-triangle"></i> Arbani et al. (2023): 94,1% perempuan tanpa deteksi dini memiliki pengetahuan kurang</div>
+            </div>
+            <p style="margin-top:1rem; font-size:0.8rem; color:#6b5a54;"><i class="fas fa-database"></i> Sumber: GLOBOCAN 2022, RKN Kemenkes RI 2024–2034, Andriani & Maulidina (2025), Arbani et al. (2023)</p>
+        </div>
+
+        <footer>
+            <p><i class="fas fa-ribbon"></i> OvaCare — Media Edukasi Kesehatan Reproduksi. Jangan abaikan kesehatanmu, lakukan deteksi dini.</p>
+            <p style="margin-top:0.5rem;">© 2025 OvaCare • Informasi berbasis penelitian terkini</p>
+        </footer>
+    </div>
+
+    <!-- Modal Global -->
+    <div id="globalModal" class="modal-overlay">
+        <div class="modal-container" id="modalContent">
+            <div class="modal-header">
+                <h3 id="modalTitle"></h3>
+                <button class="close-modal" id="closeModalBtn">&times;</button>
+            </div>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+    <div id="toastMsg" class="toast-msg"></div>
+
+    <script>
+        // ---------- KUIS: 8 SOAL (SESUAI PERMINTAAN) ----------
+        const QUIZ_SET = [
+            { question: "Berdasarkan data GLOBOCAN 2022, kanker ovarium menempati urutan ke berapa dari kanker terbanyak pada perempuan Indonesia?", options: ["Pertama", "Kedua", "Ketiga", "Kelima"], correct: 2 },
+            { question: "Mengapa kanker ovarium sering disebut 'silent killer'?", options: ["Karena hanya menyerang perempuan tua", "Karena pada stadium awal hampir tidak menunjukkan gejala spesifik", "Karena tidak bisa diobati sama sekali", "Karena menyebar sangat lambat"], correct: 1 },
+            { question: "Manakah yang BUKAN merupakan faktor risiko kanker ovarium?", options: ["Nullipara (belum pernah hamil)", "Mutasi BRCA1/BRCA2", "Penggunaan kontrasepsi oral jangka panjang", "Obesitas"], correct: 2 },
+            { question: "Berapa angka kesintasan 5 tahun (5-year survival rate) kanker ovarium di Indonesia?", options: ["75%", "60%", "41%", "25%"], correct: 1 },
+            { question: "Apa metode skrining yang direkomendasikan untuk perempuan berisiko tinggi kanker ovarium?", options: ["Pap smear", "USG transvaginal + CA-125 serum", "CT Scan rutin", "Mammografi"], correct: 1 },
+            { question: "Subtipe kanker ovarium mana yang paling sering ditemukan dan paling agresif?", options: ["Mucinous carcinoma", "Stromal tumor", "High-Grade Serous Carcinoma (HGSC)", "Teratoma matur"], correct: 2 },
+            { question: "Berdasarkan penelitian Andriani & Maulidina (2025) di RSUD Dr. Achmad Mochtar Bukittinggi, apa yang terjadi setelah perempuan mendapat pendidikan kesehatan tentang faktor risiko kanker ovarium?", options: ["Tidak ada perubahan yang signifikan", "Pengetahuan meningkat tetapi sikap tidak berubah", "Pengetahuan dan sikap keduanya meningkat secara signifikan (p=0,000)", "Hanya sikap yang meningkat"], correct: 2 },
+            { question: "Menurut Lawson McLean & Hristidis (2025), apa syarat utama agar media digital (chatbot/website) untuk edukasi onkologi dapat dipercaya?", options: ["Tampilannya harus semenarik mungkin", "Harus dikembangkan berdasarkan bukti ilmiah (evidence-based) dan transparan", "Harus tersedia 24 jam penuh", "Harus dibuat oleh dokter spesialis"], correct: 1 }
+        ];
+
+        // State kuis
+        let currentStep = 0;
+        let userSelections = new Array(QUIZ_SET.length).fill(null);
+        let isQuizOpen = false;
+
+        function showToast(msg, duration = 2500) {
+            const toast = document.getElementById('toastMsg');
+            toast.textContent = msg;
+            toast.style.opacity = '1';
+            setTimeout(() => { toast.style.opacity = '0'; }, duration);
+        }
+
+        const modal = document.getElementById('globalModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+
+        function openModal(title, bodyHTML) {
+            modalTitle.innerHTML = title;
+            modalBody.innerHTML = bodyHTML;
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            isQuizOpen = false;
+        }
+
+        // RENDER KUIS (step by step)
+        function renderQuizStep() {
+            if (!isQuizOpen) return;
+            if (currentStep >= QUIZ_SET.length) {
+                let correctCount = 0;
+                for (let i = 0; i < QUIZ_SET.length; i++) {
+                    if (userSelections[i] !== null && userSelections[i] === QUIZ_SET[i].correct) correctCount++;
+                }
+                const percentage = Math.round((correctCount / QUIZ_SET.length) * 100);
+                let feedbackMsg = "";
+                if (correctCount >= 7) feedbackMsg = "Luar biasa! Pengetahuanmu sangat baik tentang kanker ovarium. 🌟";
+                else if (correctCount >= 5) feedbackMsg = "Cukup baik, tingkatkan lagi pemahaman tentang deteksi dini. 📚";
+                else feedbackMsg = "Yuk, pelajari lebih lanjut materi di atas untuk meningkatkan kewaspadaan. 💪";
+                const resultHTML = `
+                    <div class="result-score">
+                        <i class="fas fa-star-of-life" style="font-size:2rem; color:#d95b6c;"></i>
+                        <h3>Skor Akhir: ${correctCount} / ${QUIZ_SET.length}</h3>
+                        <p style="font-size:1.2rem; font-weight:bold;">${percentage}%</p>
+                        <p>${feedbackMsg}</p>
+                    </div>
+                    <button class="btn-primary" id="restartQuizBtn" style="width:100%; margin-top:0.5rem;"><i class="fas fa-redo-alt"></i> Ulangi Kuis</button>
+                `;
+                modalBody.innerHTML = resultHTML;
+                document.getElementById('restartQuizBtn')?.addEventListener('click', () => {
+                    currentStep = 0;
+                    userSelections.fill(null);
+                    renderQuizStep();
+                });
+                return;
+            }
+            const q = QUIZ_SET[currentStep];
+            let optionsHtml = '';
+            q.options.forEach((opt, idx) => {
+                const isChecked = (userSelections[currentStep] === idx);
+                const checkedAttr = isChecked ? 'checked' : '';
+                optionsHtml += `<label><input type="radio" name="quizOption" value="${idx}" ${checkedAttr}> ${opt}</label>`;
+            });
+            const quizHtml = `
+                <div class="quiz-question">
+                    <p><strong>Soal ${currentStep+1} / ${QUIZ_SET.length}</strong><br>${q.question}</p>
+                    <div class="quiz-options">${optionsHtml}</div>
+                </div>
+                <div class="quiz-nav-buttons">
+                    <button class="btn-secondary" id="quizPrevBtn" ${currentStep === 0 ? 'disabled' : ''}><i class="fas fa-arrow-left"></i> Sebelumnya</button>
+                    <button class="btn-primary" id="quizNextBtn">${currentStep === QUIZ_SET.length-1 ? 'Selesai' : 'Selanjutnya'} <i class="fas fa-arrow-right"></i></button>
+                </div>
+            `;
+            modalBody.innerHTML = quizHtml;
+            document.querySelectorAll('input[name="quizOption"]').forEach(radio => {
+                radio.addEventListener('change', (e) => { userSelections[currentStep] = parseInt(e.target.value); });
+            });
+            document.getElementById('quizNextBtn')?.addEventListener('click', () => {
+                const selected = document.querySelector('input[name="quizOption"]:checked');
+                if (userSelections[currentStep] === null && !selected) {
+                    showToast("Silakan pilih jawaban terlebih dahulu", 1500);
+                    return;
+                }
+                if (selected) userSelections[currentStep] = parseInt(selected.value);
+                if (currentStep + 1 < QUIZ_SET.length) { currentStep++; renderQuizStep(); }
+                else { currentStep++; renderQuizStep(); }
+            });
+            document.getElementById('quizPrevBtn')?.addEventListener('click', () => {
+                if (currentStep > 0) { currentStep--; renderQuizStep(); }
+            });
+        }
+
+        function startQuizModule() {
+            currentStep = 0;
+            userSelections = new Array(QUIZ_SET.length).fill(null);
+            isQuizOpen = true;
+            openModal("📝 Uji Pengetahuan (8 Soal)", "<div style='text-align:center'>Memuat kuis...</div>");
+            setTimeout(() => { if (isQuizOpen) renderQuizStep(); }, 20);
+        }
+
+        // ========== KENALI KANKER (MATERI BARU SESUAI TEKS) ==========
+        function showKenaliKanker() {
+            const content = `
+                <div style="font-family: 'Inter', sans-serif;">
+                    <div style="text-align:center; margin-bottom:1.5rem;">
+                        <h2 style="color:#d95b6c; font-weight:800;">Materi Edukasi</h2>
+                        <h3 style="font-size:1.6rem;">Kenali Kanker Ovarium</h3>
+                        <p style="color:#5a5a5a;">Informasi berbasis bukti ilmiah untuk melindungi dirimu dan orang-orang terkasih</p>
+                    </div>
+
+                    <div style="background:#faf1ec; padding:1.2rem; border-radius:1.5rem; margin-bottom:1.5rem;">
+                        <h4 style="font-size:1.3rem; font-weight:700;"><i class="fas fa-info-circle" style="color:#d95b6c;"></i> Apa itu kanker ovarium?</h4>
+                        <p>Kanker ovarium adalah pertumbuhan sel abnormal yang tidak terkendali pada jaringan ovarium (indung telur). Disebut "silent killer" karena pada stadium awal hampir tidak menunjukkan gejala yang spesifik, sehingga sering terlambat terdiagnosis.</p>
+                        <p style="margin-top:0.8rem;">Ovarium adalah organ penghasil sel telur dan hormon estrogen/progesteron. Tiga jaringan utama yang bisa menjadi sumber kanker: epitel permukaan (~90%), sel germinal, dan stroma.</p>
+                    </div>
+
+                    <h4 style="font-weight:700; margin-top:1rem;"><i class="fas fa-symptoms"></i> Tanda & gejala yang harus diwaspadai</h4>
+                    <div class="symptom-grid">
+                        <div class="symptom-card"><i class="fas fa-bloat"></i> 🫄 Perut kembung terus-menerus<br><small>Berlangsung >2–3 minggu, tidak membaik</small></div>
+                        <div class="symptom-card"><i class="fas fa-female"></i> 😣 Nyeri panggul / perut bawah<br><small>Tekanan atau nyeri persisten</small></div>
+                        <div class="symptom-card"><i class="fas fa-utensils"></i> 🍽️ Cepat merasa kenyang<br><small>Sulit makan atau porsi jauh berkurang</small></div>
+                        <div class="symptom-card"><i class="fas fa-toilet"></i> 🚿 Sering BAK / urgensi<br><small>Frekuensi buang air kecil meningkat drastis</small></div>
+                        <div class="symptom-card"><i class="fas fa-bed"></i> 😴 Kelelahan ekstrem<br><small>Tidak bertenaga meski cukup istirahat</small></div>
+                        <div class="symptom-card"><i class="fas fa-weight-scale"></i> ⚖️ BB turun tanpa sebab<br><small>Penurunan berat badan tidak disengaja</small></div>
+                    </div>
+
+                    <h4 style="font-weight:700; margin-top:1.5rem;"><i class="fas fa-chart-line"></i> Stadium & angka harapan hidup</h4>
+                    <table class="stage-table">
+                        <thead><tr><th>Stadium</th><th>Lokasi</th><th>Angka Kesintasan 5 Tahun</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><strong>I</strong></td><td>Lokal (terbatas ovarium)</td><td><span class="badge-survival">>90%</span></td></tr>
+                            <tr><td><strong>II</strong></td><td>Panggul</td><td><span class="badge-survival">~70%</span></td></tr>
+                            <tr><td><strong>III</strong></td><td>Abdomen (peritoneum, KGB)</td><td><span class="badge-survival">~29%</span></td></tr>
+                            <tr><td><strong>IV</strong></td><td>Jauh (hati, paru, pleura)</td><td><span class="badge-survival">~13%</span></td></tr>
+                        </tbody>
+                    </table>
+
+                    <div style="background:#eef4f0; padding:1rem; border-radius:1.5rem; margin:1.5rem 0;">
+                        <h4 style="font-weight:700;"><i class="fas fa-microscope"></i> Deteksi dini</h4>
+                        <p>Pemeriksaan yang dianjurkan untuk perempuan 30–69 tahun atau berisiko tinggi: <strong>USG transvaginal</strong> untuk melihat massa di ovarium, dan <strong>CA-125 serum</strong> (penanda tumor dalam darah, nilai normal <35 U/mL). Keduanya paling efektif dikombinasikan. Konfirmasi diagnosis hanya bisa melalui biopsi/operasi.</p>
+                    </div>
+
+                    <div style="font-size:0.7rem; color:#7b6e68; border-top:1px solid #f0e2db; padding-top:1rem; margin-top:1rem;">
+                        Sumber: Koshiyama et al. 2017 · Smolarz et al. 2025 · Zhang et al. 2022 · PPK RSCM 2017 · PNPK HOGI · Darmayasa et al. 2022 (JKR UGM)
+                    </div>
+                </div>
+            `;
+            openModal("📘 Kenali Kanker Ovarium", content);
+        }
+
+        // ========== ASESMEN RISIKO (8 PERTANYAAN dengan skoring) ==========
+        function showRiskAssessment() {
+            const formHtml = `
+                <div style="font-size:0.9rem; margin-bottom:1rem;">🔍 Jawab 8 pertanyaan berikut untuk mengetahui tingkat risiko kanker ovarium (bersifat edukatif).</div>
+                <div id="riskFormContainer">
+                    <div class="risk-form-group">
+                        <label>1. Berapa usia kamu saat ini?</label>
+                        <select id="risk_q1">
+                            <option value="0">Di bawah 30 tahun</option>
+                            <option value="1">30–49 tahun</option>
+                            <option value="2">50 tahun ke atas (termasuk pasca menopause)</option>
+                        </select>
+                    </div>
+                    <div class="risk-form-group">
+                        <label>2. Apakah kamu atau anggota keluarga dekat (ibu, saudari) pernah didiagnosis kanker ovarium atau kanker payudara?</label>
+                        <select id="risk_q2">
+                            <option value="0">Tidak ada riwayat</option>
+                            <option value="2">Ada riwayat kanker payudara di keluarga</option>
+                            <option value="3">Ada riwayat kanker ovarium di keluarga</option>
+                        </select>
+                    </div>
+                    <div class="risk-form-group">
+                        <label>3. Sudah berapa kali kamu pernah hamil / melahirkan?</label>
+                        <select id="risk_q3">
+                            <option value="2">Belum pernah hamil (nullipara)</option>
+                            <option value="0">1 kali</option>
+                            <option value="0">2 kali atau lebih</option>
+                        </select>
+                    </div>
+                    <div class="risk-form-group">
+                        <label>4. Apakah kamu pernah atau sedang menggunakan terapi hormon (estrogen) jangka panjang pasca menopause?</label>
+                        <select id="risk_q4">
+                            <option value="0">Tidak pernah</option>
+                            <option value="1">Kurang dari 5 tahun</option>
+                            <option value="2">Lebih dari 5 tahun</option>
+                        </select>
+                    </div>
+                    <div class="risk-form-group">
+                        <label>5. Bagaimana kondisi berat badanmu saat ini?</label>
+                        <select id="risk_q5">
+                            <option value="0">Berat badan normal (IMT 18,5–24,9)</option>
+                            <option value="1">Kelebihan berat badan (IMT 25–29,9)</option>
+                            <option value="2">Obesitas (IMT ≥30)</option>
+                        </select>
+                    </div>
+                    <div class="risk-form-group">
+                        <label>6. Apakah kamu pernah didiagnosis dengan endometriosis?</label>
+                        <select id="risk_q6">
+                            <option value="0">Tidak</option>
+                            <option value="2">Ya, pernah didiagnosis endometriosis</option>
+                        </select>
+                    </div>
+                    <div class="risk-form-group">
+                        <label>7. Seberapa sering kamu mengonsumsi makanan tinggi lemak jenuh (gorengan, daging berlemak, makanan cepat saji)?</label>
+                        <select id="risk_q7">
+                            <option value="0">Jarang (1–2x seminggu)</option>
+                            <option value="1">Cukup sering (3–4x seminggu)</option>
+                            <option value="2">Hampir setiap hari</option>
+                        </select>
+                    </div>
+                    <div class="risk-form-group">
+                        <label>8. Kapan terakhir kali kamu melakukan pemeriksaan ginekologi (dokter kandungan / USG kandungan)?</label>
+                        <select id="risk_q8">
+                            <option value="0">Kurang dari 1 tahun lalu</option>
+                            <option value="1">1–3 tahun lalu</option>
+                            <option value="2">Lebih dari 3 tahun lalu / belum pernah</option>
+                        </select>
+                    </div>
+                    <button class="btn-primary" id="calculateRiskNewBtn" style="width:100%; margin-top:1rem;"><i class="fas fa-heartbeat"></i> Hitung Tingkat Risiko</button>
+                    <div id="riskResultNew" style="margin-top:1.5rem; padding:1rem; background:#f4ede9; border-radius:1.5rem;"></div>
+                </div>
+            `;
+            openModal("🩺 Cek Risiko Kanker Ovarium", formHtml);
+            setTimeout(() => {
+                const calcBtn = document.getElementById('calculateRiskNewBtn');
+                if (calcBtn) {
+                    calcBtn.onclick = () => {
+                        const q1 = parseInt(document.getElementById('risk_q1').value);
+                        const q2 = parseInt(document.getElementById('risk_q2').value);
+                        const q3 = parseInt(document.getElementById('risk_q3').value);
+                        const q4 = parseInt(document.getElementById('risk_q4').value);
+                        const q5 = parseInt(document.getElementById('risk_q5').value);
+                        const q6 = parseInt(document.getElementById('risk_q6').value);
+                        const q7 = parseInt(document.getElementById('risk_q7').value);
+                        const q8 = parseInt(document.getElementById('risk_q8').value);
+                        let totalScore = q1 + q2 + q3 + q4 + q5 + q6 + q7 + q8;
+                        let level = "";
+                        let color = "";
+                        if (totalScore <= 4) { level = "Risiko Rendah"; color = "#2c7a4d"; }
+                        else if (totalScore <= 8) { level = "Risiko Sedang"; color = "#e68a2e"; }
+                        else { level = "Risiko Tinggi"; color = "#c23b22"; }
+                        let rekomendasi = "";
+                        if (level === "Risiko Rendah") rekomendasi = "✅ Pertahankan gaya hidup sehat dan lakukan pemeriksaan rutin sesuai anjuran dokter.";
+                        else if (level === "Risiko Sedang") rekomendasi = "⚠️ Konsultasikan dengan dokter kandungan untuk evaluasi lebih lanjut dan diskusikan skrining berkala.";
+                        else rekomendasi = "🚨 Segera konsultasi ke dokter spesialis kandungan. Perlu pemeriksaan lebih mendalam (USG, CA-125, dan konseling genetik).";
+                        document.getElementById('riskResultNew').innerHTML = `
+                            <strong>Skor Risiko Anda: ${totalScore} / 20</strong><br>
+                            <span style="color:${color}; font-weight:bold;">${level}</span><br>
+                            ${rekomendasi}<br>
+                            <small style="display:block; margin-top:8px;">⚠️ Asesmen ini bersifat edukatif, bukan diagnosis medis. Seluruh hasil sebaiknya dikonsultasikan dengan tenaga kesehatan profesional.</small>
+                        `;
+                    };
+                }
+            }, 30);
+        }
+
+        // Event Listeners
+        document.getElementById('heroKenaliBtn').addEventListener('click', showKenaliKanker);
+        document.getElementById('heroRiskBtn').addEventListener('click', showRiskAssessment);
+        document.getElementById('heroQuizBtn').addEventListener('click', startQuizModule);
+        document.getElementById('navKenali').addEventListener('click', showKenaliKanker);
+        document.getElementById('navRisk').addEventListener('click', showRiskAssessment);
+        document.getElementById('navQuiz').addEventListener('click', startQuizModule);
+        document.getElementById('emergencyBtn').addEventListener('click', () => showToast("☎️ Jika ada gejala mencurigakan, segera konsultasi ke dokter kandungan. Deteksi dini menyelamatkan nyawa!", 4000));
+        
+        document.querySelectorAll('.feature-card').forEach((card, idx) => {
+            card.addEventListener('click', () => {
+                if (idx === 0) showKenaliKanker();
+                else if (idx === 1) showRiskAssessment();
+                else if (idx === 2) startQuizModule();
+            });
+        });
+
+        document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+        window.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+    </script>
+</body>
+</html>
